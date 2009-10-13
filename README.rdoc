@@ -1,6 +1,20 @@
 = yumlcmd
 
-Description goes here.
+A commandline interface to generate UML diagrams with http://yuml.me
+
+sudo gem install yumlcmd
+
+Run yumlme --help
+
+It takes a file as input containing the diagram in yUML.me syntax.
+
+e.g.
+
+[Customer]+1->*[Order]
+[Order]++1-items >*[LineItem]
+[Order]-0..1>[PaymentMethod]
+
+Syntax overview: http://yuml.me/diagram/scruffy/class/draw
 
 == Note on Patches/Pull Requests
  

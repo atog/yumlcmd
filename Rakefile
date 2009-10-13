@@ -5,14 +5,15 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "yumlcmd"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{A commandline interface to generate UML diagrams with http://yuml.me}
+    gem.description = %Q{A commandline interface to generate UML diagrams with http://yuml.me}
     gem.email = "koen@atog.be"
     gem.homepage = "http://github.com/atog/yumlcmd"
     gem.authors = ["atog"]
     gem.add_development_dependency "thoughtbot-shoulda"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
+  Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
