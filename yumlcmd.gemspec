@@ -25,9 +25,11 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "bin/yumlme",
      "lib/yumlcmd.rb",
      "test/test_helper.rb",
-     "test/yumlcmd_test.rb"
+     "test/yumlcmd_test.rb",
+     "yumlcmd.gemspec"
   ]
   s.homepage = %q{http://github.com/atog/yumlcmd}
   s.rdoc_options = ["--charset=UTF-8"]
