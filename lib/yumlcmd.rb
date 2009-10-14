@@ -26,8 +26,9 @@ class YumlCmd
     opts.parse!(args)
 
     lines = IO.readlines(input).collect!{|l| l.gsub("\n", "")}.reject{|l| l =~ /#/}
-    
-    writer = open("yuml-output.#{ext}", "wb")
+    output = input.replace(".", "-")
+	output = output + "-output"
+    writer = open(output + ".#{ext}", "wb")
 
     res = Net::HTTP.start("yuml.me", 80) {|http|
       http.get(URI.escape("/diagram#{type}/class/#{lines.join(",")}"))
