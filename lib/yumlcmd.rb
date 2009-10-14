@@ -5,7 +5,7 @@ class YumlCmd
   
   def YumlCmd.generate(args)
     ext = "png"
-    input = ""
+    input = output = nil
     type = "/scruffy"
     opts = OptionParser.new do |o|
       o.banner = "Usage: #{File.basename($0)} [options]"
@@ -18,6 +18,9 @@ class YumlCmd
       o.on('-o', '--orderly', 'Generate orderly') do |type|
         type = "" if type
       end      
+      o.on('-n', '--name OUTPUT', 'Output filename') do |name|
+        output = name
+      end          
       o.on_tail('-h', '--help', 'Display this help and exit') do
         puts opts
         exit
@@ -26,9 +29,8 @@ class YumlCmd
     opts.parse!(args)
 
     lines = IO.readlines(input).collect!{|l| l.gsub("\n", "")}.reject{|l| l =~ /#/}
-    output = input.replace(".", "-")
-	output = output + "-output"
-    writer = open(output + ".#{ext}", "wb")
+    output = output || "#{input.gsub(".", "-")}"
+    writer = open("#{output}.#{ext}", "wb")
 
     res = Net::HTTP.start("yuml.me", 80) {|http|
       http.get(URI.escape("/diagram#{type}/class/#{lines.join(",")}"))
