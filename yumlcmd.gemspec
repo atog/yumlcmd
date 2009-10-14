@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{yumlcmd}
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["atog"]
-  s.date = %q{2009-10-13}
+  s.date = %q{2009-10-14}
   s.default_executable = %q{yumlme}
   s.description = %q{A commandline interface to generate UML diagrams with http://yuml.me}
   s.email = %q{koen@atog.be}
