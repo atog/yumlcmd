@@ -30,7 +30,7 @@ class YumlCmd
     writer = open("yuml-output.#{ext}", "wb")
 
     res = Net::HTTP.start("yuml.me", 80) {|http|
-      http.get("/diagram#{type}/class/#{lines.join(",")}")
+      http.get(URI.escape("/diagram#{type}/class/#{lines.join(",")}"))
     }
     writer.write(res.body)
     writer.close
