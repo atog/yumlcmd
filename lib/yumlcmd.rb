@@ -4,11 +4,14 @@ require "optparse"
 class YumlCmd
   
   def YumlCmd.generate(args)
+    # Defaults
     ext = "png"
     input = nil
     output = nil
     type = "/scruffy"
     diagramtype = "class"
+
+    # Option parser
     opts = OptionParser.new do |o|
       o.banner = "Usage: #{File.basename($0)} [options]"
       o.on('-f', '--file FILENAME', 'File containing yuml.me diagram.') do |filename|
@@ -33,6 +36,7 @@ class YumlCmd
     end
     opts.parse!(args)
 
+    # Fetch the image
     lines = IO.readlines(input).collect!{|l| l.gsub("\n", "")}.reject{|l| l =~ /#/}
     output = output || "#{input.gsub(".", "-")}"
     writer = open("#{output}.#{ext}", "wb")
