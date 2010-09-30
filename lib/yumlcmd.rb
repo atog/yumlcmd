@@ -5,8 +5,10 @@ class YumlCmd
   
   def YumlCmd.generate(args)
     ext = "png"
-    input = output = nil
+    input = nil
+    output = nil
     type = "/scruffy"
+    diagramtype = "class"
     opts = OptionParser.new do |o|
       o.banner = "Usage: #{File.basename($0)} [options]"
       o.on('-f', '--file FILENAME', 'File containing yuml.me diagram.') do |filename|
@@ -20,7 +22,10 @@ class YumlCmd
       end      
       o.on('-n', '--name OUTPUT', 'Output filename') do |name|
         output = name
-      end          
+      end
+      o.on('-d', '--diagram DIAGRAM', 'Diagram type: class, activity, usecase') do |diagram|
+	diagramtype = diagram
+      end
       o.on_tail('-h', '--help', 'Display this help and exit') do
         puts opts
         exit
@@ -33,7 +38,7 @@ class YumlCmd
     writer = open("#{output}.#{ext}", "wb")
 
     res = Net::HTTP.start("yuml.me", 80) {|http|
-      http.get(URI.escape("/diagram#{type}/class/#{lines.join(",")}"))
+      http.get(URI.escape("/diagram#{type}/#{diagramtype}/#{lines.join(",")}"))
     }
     writer.write(res.body)
     writer.close
